@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Progress Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px; /* Height of the progress bar */
+            background-color: #f0f0f0; /* Background color of the progress bar */
+            z-index: 1000;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #4caf50; /* Color of the progress bar */
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation menu */
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#subject">Subject</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sections of the page -->
+    <div id="home" style="height: 1000px; background-color: #f9f9f9;">
+        <h2>Home Section</h2>
+    </div>
+
+    <div id="about" style="height: 1000px; background-color: #e0e0e0;">
+        <h2>About Section</h2>
+    </div>
+
+    <div id="subject" style="height: 1000px; background-color: #cccccc;">
+        <h2>Subject Section</h2>
+    </div>
+
+    <!-- JavaScript to update progress bar width based on scroll position -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = scrollPercent + '%';
+        });
+    </script>
+</body>
+</html>
